@@ -361,19 +361,46 @@ Then open `nmapscan.html` in a browser to see the summary.
 
 ## My lab results
 
-> Fill this in from my own scan output (`nmapscan.html` or the terminal).
+**Scan details:** Nmap 7.95 from Kali Linux against my Metasploitable2 VM
+(VirtualBox). Full TCP connect scan of all 65,535 ports with OS and
+version detection. 1 host up, completed in about 157 seconds.
 
 | Port | State | Service | Version |
 |---|---|---|---|
-| | | | |
+| 21 | open | ftp | vsftpd 2.3.4 (anonymous login allowed) |
+| 22 | open | ssh | OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0) |
+| 23 | open | telnet | Linux telnetd |
+| 25 | open | smtp | Postfix smtpd |
+| 53 | open | domain | ISC BIND 9.4.2 |
+| 80 | open | http | Apache httpd 2.2.8 (Ubuntu) DAV/2 |
+| 139 | open | netbios-ssn | Samba smbd 3.X - 4.X |
+| 445 | open | netbios-ssn | Samba smbd 3.0.20-Debian |
+| 512 | open | exec | netkit-rsh rexecd |
+| 1524 | open | bindshell | Metasploitable root shell |
+| 2049 | open | nfs | version 2-4 |
+| 2121 | open | ftp | ProFTPD 1.3.1 |
+| 3306 | open | mysql | MySQL 5.0.51a-3ubuntu5 |
+| 5900 | open | vnc | VNC (protocol 3.3) |
+| 6667 | open | irc | UnrealIRCd |
+| 8009 | open | ajp13 | Apache Jserv (protocol v1.3) |
+| 8180 | open | http | Apache Tomcat/Coyote JSP engine 1.1 |
 
-**What I found:**
--
+*Key services shown. The full scan found 30 open ports.*
 
-**What surprised me / what I'd do differently:**
--
+### What I found
+- 30 of 65,535 ports were open on the target. The other 65,505 refused the connection.
+- `-sV` and `-A` revealed exact versions, and many are very old (OpenSSH 4.7p1, Apache 2.2.8, ISC BIND 9.4.2, MySQL 5.0.51a). Old versions can be searched in CVE databases.
+- Anonymous FTP login was allowed on port 21.
+- Several services send data unencrypted, including Telnet (23) and the FTP control connection.
+- Port 1524 was identified as a "Metasploitable root shell", and the SMTP service on port 25 supported the outdated SSLv2.
+- The SMTP SSL certificate used a 1024-bit key and had expired in 2010.
 
----
+
+## Biggest takeaway
+Raw Nmap output is hard to share, so I learned to save scans as XML
+(`-oX`) and convert them into an HTML report with `xsltproc`. This
+turned a terminal scan into a readable summary, which is the
+reporting phase of ethical hacking.
 
 ## Key takeaways
 1. TCP flags (SYN, ACK, RST, FIN, PSH, URG) are the building blocks of every scan.
