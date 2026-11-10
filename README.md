@@ -1,2 +1,11 @@
 # cybersecurity-learning
-My Cybersecurity learning journey - Linux, networking, Nmap, TryHackMe and Security projects.
+
+My cybersecurity learning journey: Linux, networking, Nmap, TryHackMe and security projects.
+
+## What's inside
+- [linux/](linux/) - Linux commands and notes
+- nmap/ - coming soon
+- tryhackme/ - coming soon
+
+## Goal
+Building hands-on skills to start a career in cybersecurity.
