@@ -5,7 +5,7 @@ My cybersecurity learning journey: Linux, networking, Nmap, TryHackMe and securi
 ## What's inside
 - [linux/](linux/) - Linux commands and notes
 -  [nmap/](nmap/home-lab-scan.md) - Nmap notes: scan types, port states, NSE, and my home lab practice
-- tryhackme/ - coming soon
+- [tryhackme/](tryhackme/pre-security.md) - TryHackMe Pre Security path notes
 
 ## Goal
 Building hands-on skills to start a career in cybersecurity.
